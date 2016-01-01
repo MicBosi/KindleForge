@@ -1,0 +1,42 @@
+body {
+    padding: 10px;
+    margin: 0 0 0 0;
+    border: none;
+}
+
+table tr td {
+    padding-right: 10px;
+}
+
+table {
+    margin-bottom: 20px;
+}
+
+textarea {
+    display: block;
+}
+
+a.glyphicon.glyphicon-floppy-save {
+    color: orange;
+}
+
+a.glyphicon.glyphicon-transfer {
+    color: #0F0;
+}
+
+#project-desk {
+    display: none;
+}
+
+#project-list {
+    display: block;
+}
+
+#project-warnings {
+    padding: 10px;
+}
+
+#project-warnings * {
+    color: orange;
+    white-space: pre;
+}

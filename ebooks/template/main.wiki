@@ -1,0 +1,88 @@
+
+
+
++ [center]TITLE OF THIS BOOK
+++ [center]SUBTITLE OF THIS BOOK
+
+[center,italic]by SOME AUTHOR
+
+[break]
+
+
+
+[center]TITLE OF THE BOOK
+Published in 2016 by Some Publisher
+
+[break]
+
+
+
+[right,italic] some wise words to remember forever
+- by some clever guy
+
+[toc]
+[break]
+= Introduction
+
+[img education-books.jpg]
+
+[bold,italic,justify]Lorem ipsum dolor sit amet, dicant nemore facilisi ex mea, usu ea laudem propriae urbanitas. An similique voluptatum est, meis veritus eu vix, discere vocibus evertitur ea sit. Ad pri tollit veniam partem. Noster reformidans sit cu, sed noluisse evertitur id.
+
+= Chapter 1
+
+Lorem ipsum dolor sit amet, dicant nemore facilisi ex mea, usu ea laudem propriae urbanitas. An similique voluptatum est, meis veritus eu vix, discere vocibus evertitur ea sit. Ad pri tollit veniam partem. Noster reformidans sit cu, sed noluisse evertitur id.
+
+== Chapter 1.1
+
+Lorem ipsum dolor sit amet, dicant nemore facilisi ex mea, usu ea laudem propriae urbanitas. An similique voluptatum est, meis veritus eu vix, discere vocibus evertitur ea sit. Ad pri tollit veniam partem. Noster reformidans sit cu, sed noluisse evertitur id.
+
+== Chapter 1.2
+
+Lorem ipsum dolor sit amet, dicant nemore facilisi ex mea, usu ea laudem propriae urbanitas. An similique voluptatum est, meis veritus eu vix, discere vocibus evertitur ea sit. Ad pri tollit veniam partem. Noster reformidans sit cu, sed noluisse evertitur id.
+
+= Chapter 2
+
+Lorem ipsum dolor sit amet, dicant nemore facilisi ex mea, usu ea laudem propriae urbanitas. An similique voluptatum est, meis veritus eu vix, discere vocibus evertitur ea sit. Ad pri tollit veniam partem. Noster reformidans sit cu, sed noluisse evertitur id.
+
+== Chapter 2.1
+
+Lorem ipsum dolor sit amet, dicant nemore facilisi ex mea, usu ea laudem propriae urbanitas. An similique voluptatum est, meis veritus eu vix, discere vocibus evertitur ea sit. Ad pri tollit veniam partem. Noster reformidans sit cu, sed noluisse evertitur id.
+
+== Chapter 2.2
+
+Lorem ipsum dolor sit amet, dicant nemore facilisi ex mea, usu ea laudem propriae urbanitas. An similique voluptatum est, meis veritus eu vix, discere vocibus evertitur ea sit. Ad pri tollit veniam partem. Noster reformidans sit cu, sed noluisse evertitur id.
+
+= Quick Reference
+
+Bold:
+'''bold'''
+
+Italic:
+''italic''
+
+Paragraph styles:
+[center|left|right|justify,bold,italic,underline,strike,small,serif|sans-serif|cursive|fantasy|monospace]
+
+Generate table of contents:
+[toc]
+
+Insert page break:
+[break]
+
+Titles (included in TOC)
+= Title 1
+== Title 2
+=== Title 3
+==== Title 4
+===== Title 5
+====== Title 6
+
+Titles (excluded from TOC)
++ Title 1
+++ Title 2
++++ Title 3
+++++ Title 4
++++++ Title 5
+++++++ Title 6
+
+[img image-name.png]

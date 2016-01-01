@@ -1,0 +1,17 @@
+body { text-align: left; }
+div { text-align: left; }
+ul { text-align: left; padding: 0; padding-left: 1em;}
+.toc { margin: 0; line-height: 1.5; text-align: left; font-family: sans-serif; }
+.toc-title { }
+div.noindent * { text-indent: 0; }
+
+p { margin: 0; margin-bottom: 1em; text-indent: 0; text-align: left; }
+h1 { text-align: left; font-family: sans-serif; }
+h2 { text-align: left; font-family: sans-serif; }
+h3 { text-align: left; font-family: sans-serif; }
+h4 { text-align: left; font-family: sans-serif; }
+h5 { text-align: left; font-family: sans-serif; }
+h6 { text-align: left; font-family: sans-serif; }
+div { text-align: left; }
+img { margin-bottom: 1em; }
+

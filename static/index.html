@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title>Loading...</title>
+
+        <meta name="description" content="Kindle Forge"/>
+        <meta name="keywords" content=""/>
+        <meta name="robots" content="index, follow"/>
+        <link rel="canonical" href=""/>
+        <link rel="shortcut icon" href="favicon.ico">
+
+        <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+
+        <!-- will render page content in app-like full screen mode and make the status bar translucent -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <!-- social -->
+        <meta property="fb:app_id"       content=""/>
+        <meta property="og:type"         content=""/>
+        <meta property="og:site_name"    content=""/>
+        <meta property="og:url"          content=""/>
+        <meta property="og:title"        content=""/>
+        <meta property="og:description"  content=""/>
+        <meta property="og:image"        content=""/>
+
+        <meta name="twitter:card"        content="summary">
+        <meta name="twitter:url"         content=""/>
+        <meta name="twitter:description" content=""/>
+        <meta name="twitter:image"       content=""/>
+
+        <!-- bootstrap, jquery, css -->
+        <link rel="stylesheet" media="screen" href="bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" media="screen" type="text/css" href="css/style.css"/>
+        <link rel="stylesheet" media="only screen and (max-width: 950px)" href="css/mobile.css"/>
+
+        <!-- workaround: http://stackoverflow.com/questions/32621988/electron-jquery-is-not-defined -->
+        <script>window.$ = window.jQuery = require('./js-ext/jquery-1.11.3.js');</script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- sprintf util -->
+        <script src="js-ext/sprintf-westhoff.js"></script>
+        <script type="text/javascript">var F = sprintf</script>
+
+        <!-- internal scripts -->
+        <script src="js/utils.js"></script>
+        <script src="js/bundle.js"></script>
+    </head>
+    <body>
+        <div id="project-list" style="border: 1px solid lightgray; padding: 5px; margin-bottom: 20px;">Loading app...</div>
+
+        <div id="project-desk">
+            <h1 style="width: 95%;">
+                <span id="project-name">New Project</span>
+                &nbsp; <a style="font-size:80%;" class="glyphicon glyphicon-cloud-upload" title="Save" id="save-icon" onclick="XS.save_project(); return false;"></a> 
+                &nbsp; <a id="download-zip"  style="font-size:80%;" class="glyphicon glyphicon-cloud-download" title="Export .zip file" href="#"></a>
+                &nbsp; <a id="project-reload" style="font-size:80%;" class="glyphicon glyphicon-refresh" title="Reload" href="#" onclick="XS.open_project(XS.project_name); return false;"></a>
+                &nbsp; <a id="external-preview" style="font-size:80%;" class="glyphicon glyphicon-share" title="External Preview" href="#" target="_blank"></a>
+                &nbsp; <a id="close-project" style="font-size:80%; float: right;" class="glyphicon glyphicon-remove-circle" title="Close project" href="#" onclick="XS.close_project(); return false;"></a>
+            </h1>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="active"><a href="#wiki" role="tab" data-toggle="tab">wiki</a></li>
+              <li><a href="#css" role="tab" data-toggle="tab">css</a></li>
+              <li><a href="#pics-tab-pane" role="tab" data-toggle="tab">pics</a></li>
+              <li><a href="#htmlcode" role="tab" data-toggle="tab" onclick="XS.compile();">html</a></li>
+              <li><a href="#preview" role="tab" data-toggle="tab" onclick="XS.compile();">preview</a></li>
+              <li><a href="#warnings" role="tab" data-toggle="tab" onclick="XS.compile();">warnings <span id="warning-count"></span></a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content" style="margin-top: 20px;">
+                <div class="tab-pane active" id="wiki">
+                    <textarea id="project-wiki" style="width: 95%; margin-bottom: 10px; font-family: monospace; font-size: 12px;" rows="25"></textarea>
+                </div>
+                <div class="tab-pane" id="css">
+                    <textarea id="project-css" style="width: 95%; font-family: monospace; font-size: 12px;" rows="25"></textarea>
+                </div>
+                <div class="tab-pane" id="htmlcode">
+                    <textarea id="project-html" style="width: 95%; font-family: monospace; font-size: 12px;" rows="25" readonly></textarea>        
+                </div>
+                <div class="tab-pane" id="pics-tab-pane">
+                    <form id="file-form" action="" method="POST" enctype="multipart/form-data">
+                        <input type="file" id="file-select" name="photos[]" multiple style="display: inline-block"/>
+                        <button type="submit" id="upload-button">Upload</button>
+                    </form>
+                    <div id="pics-list"></div>
+                </div>
+                <div class="tab-pane" id="preview">
+                    <iframe id="render" style="width: 95%; height: 430px"></iframe>
+                </div>
+                <div class="tab-pane" id="warnings">
+                    <div id="project-warnings" style="width: 95%; font-family: monospace; border: 1px dashed lightgray;"></div>        
+                </div>
+            </div>
+        </div>
+	</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "name": "kindle-forge",
+  "version": "1.0.0",
+  "description": "A minimalistic single page app to create Kindle ebooks",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MicBosi/Miscellaneous/tree/master/kindle-forge"
+  },
+  "keywords": [
+    "Electron",
+    "Kindle",
+    "ebook",
+    "publishing"
+  ],
+  "author": "MicBosi",
+  "license": "GPL-3.0",
+  "homepage": "https://github.com/MicBosi/Miscellaneous/blob/master/kindle-forge/README.md",
+  "devDependencies": {
+    "electron-prebuilt": "^0.35.0"
+  },
+  "dependencies": {
+    "archiver": "^0.20.0",
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "image-size": "^0.4.0"
+  }
+}
