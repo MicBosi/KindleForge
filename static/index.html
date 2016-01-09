@@ -37,7 +37,7 @@
         <link rel="stylesheet" media="only screen and (max-width: 950px)" href="css/mobile.css"/>
 
         <!-- workaround: http://stackoverflow.com/questions/32621988/electron-jquery-is-not-defined -->
-        <script>window.$ = window.jQuery = require('./js-ext/jquery-1.11.3.js');</script>
+        <script>window.$ = window.jQuery = require('./js-ext/jquery-2.1.4.js');</script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
 
         <!-- sprintf util -->
@@ -46,7 +46,11 @@
 
         <!-- internal scripts -->
         <script src="js/utils.js"></script>
-        <script src="js/bundle.js"></script>
+        <script src="js/project.js"></script>
+        <script src="js/wikify.js"></script>
+        <script src="js/Ajax.js"></script>
+        <script src="js/Server.js"></script>
+        <script src="js/init.js"></script>
     </head>
     <body>
         <div id="project-list" style="border: 1px solid lightgray; padding: 5px; margin-bottom: 20px;">Loading app...</div>
