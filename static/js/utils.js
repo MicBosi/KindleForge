@@ -1291,4 +1291,3 @@ var err_callback = function(xhr) {
     var data = safe_json_parse(xhr.responseText);
     alert(data.message);
 }
-

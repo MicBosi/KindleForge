@@ -1,3 +1,4 @@
+(function() {
 'use strict';
 
 window.XS = window.XS == undefined ? {} : window.XS;
@@ -279,3 +280,4 @@ XS.compile = function() {
         O('warning-count').innerHTML = O('project-warnings').children.length;
     }
 }
+})();

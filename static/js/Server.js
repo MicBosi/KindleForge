@@ -1,3 +1,4 @@
+(function() {
 'use strict';
 
 window.XS = window.XS == undefined ? {} : window.XS;
@@ -119,3 +120,4 @@ XS.Server.prototype.api_check_project_status = function(project_name, user_ok_ca
 
     ajax.get();
 };
+})();

@@ -1,3 +1,4 @@
+(function() {
 'use strict';
 
 window.XS = window.XS == undefined ? {} : window.XS;
@@ -127,3 +128,4 @@ XS.Ajax.prototype.post = function() {
     }
     xhr.send(data);
 }
+})();

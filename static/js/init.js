@@ -1,11 +1,7 @@
+(function() {
 'use strict';
 
 window.XS = window.XS == undefined ? {} : window.XS;
-
-require('./Ajax');
-require('./Server');
-require('./project');
-require('./wikify');
 
 XS.APP_NAME = 'Kindle Forge 1.0';
 XS.EBOOK_DIR = '../ebooks';
@@ -186,3 +182,4 @@ XS.initialize_image_form = function() {
 }
 
 document.onready = initialize;
+})();

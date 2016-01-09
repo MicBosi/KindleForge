@@ -1,3 +1,4 @@
+(function() {
 'use strict';
 
 window.XS = window.XS == undefined ? {} : window.XS;
@@ -180,3 +181,4 @@ XS.download_zip = function() {
     e.initEvent('click' ,true ,true);
     link.dispatchEvent(e);
 }
+})();
