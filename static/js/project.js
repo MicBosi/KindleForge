@@ -5,9 +5,45 @@ window.XS = window.XS == undefined ? {} : window.XS;
 
 XS.open_project = function(project_name) {
     O('project-list').innerHTML = 'Loading ebook: '+project_name;
-    O('file-select').value = '';
+    $('#filelist').html('');
     XS.project_name = project_name;
     O('project-reload').style.color = 'orange';
+
+    // init pluploader
+    if (XS.uploader) {
+        XS.uploader.destroy();
+    }
+    XS.uploader = new plupload.Uploader({
+        browse_button: 'browse', // this can be an id of a DOM element or the DOM element itself
+        url: XS.UPLOAD_URL,
+        multipart_params: {
+            cmd: 'upload-picture',
+            project_name: XS.project_name
+        }
+    });
+     
+    XS.uploader.init();
+
+    XS.uploader.bind('FilesAdded', function(up, files) {
+        var html = '';
+        plupload.each(files, function(file) {
+            html += '<li id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></li>';
+        });
+        document.getElementById('filelist').innerHTML += html;
+    });
+     
+    XS.uploader.bind('UploadProgress', function(up, file) {
+        document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+    });
+     
+    XS.uploader.bind('Error', function(up, err) {
+        document.getElementById('console').innerHTML += "\nError #" + err.code + ": " + err.message;
+    });
+     
+    document.getElementById('start-upload').onclick = function() {
+        XS.uploader.start();
+    };
+
 
     var ok_callback = function(xhr) {
         document.title = XS.project_name;

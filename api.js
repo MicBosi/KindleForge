@@ -1,20 +1,26 @@
 'use strict';
 const EBOOK_DIR = './ebooks';
 const REST_API_PORT = 3000;
+const UPLOAD_PORT = 3001;
 const REST_API_BASE_DIR = '/api';
+const UPLOAD_BASE_DIR = '/upload';
 const MAX_UPLOAD_SIZE = '10mb';
 
 const express = require('express');
 const bodyParser = require('body-parser');
 const archiver = require('archiver');
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 const image_size = require('image-size');
+const multiparty = require('multiparty');
+const http = require('http');
+const util = require('util');
 
 const api = express();
 
 // to support JSON-encoded bodies
-api.use( bodyParser.json({
+api.use(bodyParser.json({
     limit: MAX_UPLOAD_SIZE
 }));
 
@@ -26,13 +32,13 @@ api.use(bodyParser.urlencoded({
 
 function list_pics(project, include_dims) 
 {
-    let paths = fs.readdirSync(EBOOK_DIR+'/'+project);
+    let paths = fs.readdirSync(`${EBOOK_DIR}/${project}`);
     paths = paths.filter(function(path) {
         return /(\.png|\.jpg|\.jpeg)$/i.test(path);
     });
     paths = paths.map(function(path) {
         if (include_dims) {
-            let full_path = EBOOK_DIR + '/' + project + '/' + path;
+            let full_path = `${EBOOK_DIR}/${project}/${path}`;
             let dimensions = image_size(full_path);
             let width = dimensions.width;
             let height = dimensions.height;
@@ -44,6 +50,28 @@ function list_pics(project, include_dims)
     });
     return paths;
 }
+
+http.createServer(function(req, res) {
+    if (req.url === UPLOAD_BASE_DIR && req.method === 'POST') {
+        // parse a file upload 
+        var form = new multiparty.Form();
+
+        form.parse(req, function(err, fields, files) {
+            var project_name = fields.project_name[0];
+            // var cmd = fields.cmd[0];
+
+            var old_path = files.file[0].path;
+            var new_path = `${EBOOK_DIR}/${project_name}/${files.file[0].originalFilename}`;
+            // console.log(old_path + ' -> ' + new_path);
+            fs.renameSync(old_path, new_path);
+
+            res.writeHead(200, {'content-type': 'text/plain'});
+            res.write('Upload received.');
+            res.end(util.inspect({fields: fields, files: files}));
+        });
+        return;
+    }
+}).listen(UPLOAD_PORT);
 
 api.get(REST_API_BASE_DIR, function(req, res) {
     if (req.query.cmd == 'list-projects') {
@@ -136,6 +164,7 @@ api.post(REST_API_BASE_DIR, function(req, res) {
         };
         res.send(JSON.stringify(output));
     } else if (req.body.cmd == 'save-project') {
+        console.log(req.body);
         let project_name = req.body.project_name;
         let project_wiki = req.body.project_wiki;
         let project_css = req.body.project_css;
@@ -149,18 +178,12 @@ api.post(REST_API_BASE_DIR, function(req, res) {
             code:'OK'
         };
         res.send(JSON.stringify(output));
-    } else if (req.body.cmd == 'upload-picture') {
-        // to be implemented
-        let project_name = req.query.project_name;
-        let output = { 
-            code:'OK', 
-            data: {
-            }
-        };
-        res.send(JSON.stringify(output));
     } else if (req.body.cmd == 'delete-picture') {
+        console.log('delete-picture')
         // to be implemented
-        let project_name = req.query.project_name;
+        let project_name = req.body.project_name;
+        let pic_name = req.body.pic_name;
+        fs.unlinkSync(`${EBOOK_DIR}/${project_name}/${pic_name}`);
         let output = { 
             code:'OK', 
             data: {
@@ -168,6 +191,7 @@ api.post(REST_API_BASE_DIR, function(req, res) {
         };
         res.send(JSON.stringify(output));
     } else {
+        res.statusCode = 404;
         res.send('Unknown API command.');
     }
 });

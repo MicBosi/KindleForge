@@ -39,6 +39,8 @@
         <!-- workaround: http://stackoverflow.com/questions/32621988/electron-jquery-is-not-defined -->
         <script>window.$ = window.jQuery = require('./js-ext/jquery-2.1.4.js');</script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="./js-ext/plupload.full.min.js"></script>
+
 
         <!-- sprintf util -->
         <script src="js-ext/sprintf-westhoff.js"></script>
@@ -67,7 +69,7 @@
             <ul class="nav nav-tabs" role="tablist">
               <li class="active"><a href="#wiki" role="tab" data-toggle="tab">wiki</a></li>
               <li><a href="#css" role="tab" data-toggle="tab">css</a></li>
-              <li><a href="#pics-tab-pane" role="tab" data-toggle="tab">pics</a></li>
+              <li><a href="#pics-tab-pane" role="tab" data-toggle="tab" onclick="$('#filelist').html('');">pics</a></li>
               <li><a href="#htmlcode" role="tab" data-toggle="tab" onclick="XS.compile();">html</a></li>
               <li><a href="#preview" role="tab" data-toggle="tab" onclick="XS.compile();">preview</a></li>
               <li><a href="#warnings" role="tab" data-toggle="tab" onclick="XS.compile();">warnings <span id="warning-count"></span></a></li>
@@ -85,10 +87,23 @@
                     <textarea id="project-html" style="width: 95%; font-family: monospace; font-size: 12px;" rows="25" readonly></textarea>        
                 </div>
                 <div class="tab-pane" id="pics-tab-pane">
+                    <ul id="filelist"></ul>
+                    <br />
+                     
+                    <div id="container">
+                        <a id="browse" href="javascript:;" class="btn btn-primary">Browse...</a> &nbsp;
+                        <a id="start-upload" href="javascript:;" class="btn btn-primary">Start Upload</a>
+                    </div>
+
+                    <div id="console" class="text-danger">
+                    </div>
+
+                    <!--
                     <form id="file-form" action="" method="POST" enctype="multipart/form-data">
                         <input type="file" id="file-select" name="photos[]" multiple style="display: inline-block"/>
                         <button type="submit" id="upload-button">Upload</button>
                     </form>
+                    -->
                     <div id="pics-list"></div>
                 </div>
                 <div class="tab-pane" id="preview">
